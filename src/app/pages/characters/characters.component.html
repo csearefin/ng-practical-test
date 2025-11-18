@@ -16,6 +16,41 @@
             </tr>
           </thead>
           <tbody>
+            @if (state() === CharacterState.LOADING) {
+              <tr>
+                <td colspan="5" class="text-center">
+                  <strong>Loading...</strong>
+                </td>
+              </tr>
+            } 
+            
+            @else if (state() === CharacterState.NO_DATA_FOUND) {
+              <tr>
+                <td colspan="5" class="text-center">
+                  <strong class="text-danger">Sorry, no characters found.</strong>
+                </td>
+              </tr>
+            }
+            
+            @else if (state() === CharacterState.ERROR) {
+              <tr>
+                <td colspan="5" class="text-center">
+                  <strong class="text-danger">An error occurred while fetching data. Please try again.</strong>
+                </td>
+              </tr>
+            }
+
+            @else if (state() === CharacterState.LOADED) {
+              @for (character of characters(); track character.id) {
+                <tr>
+                  <td>{{ character.id }}</td>
+                  <td>{{ character.name }}</td>
+                  <td>{{ character.status }}</td>
+                  <td>{{ character.species }}</td>
+                  <td>{{ character.gender }}</td>
+                </tr>
+              }
+            }
 
             <!-- template for content rows -->
             <!-- <tr>

@@ -26,5 +26,11 @@
      * write some css to show only 4 line maximum in the paragraph
      * when it's being overflowed, it should show `...` ellipsis at the end.
      */
+     overflow: hidden;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 4;
+      text-overflow: ellipsis;
+      line-height: 3.5em;
   }
 }
